@@ -32,7 +32,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	#swiper {
 		width: 375px;
 		height: 220px;
@@ -46,11 +46,11 @@
 		z-index: 5;
 	}
 	.swiper-item {
-		width: 4500px;
+		width: 100%;
 		height: 220px;
 	}
 	.swiper-item img {
-		width: 375px;
+		width: 100%;
 		height: 220px;
 		float: left;
 	}

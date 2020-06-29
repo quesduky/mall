@@ -25,7 +25,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.recomment {
 		display: flex;
 		margin: 10px 10px;

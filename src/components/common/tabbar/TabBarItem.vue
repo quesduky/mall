@@ -38,7 +38,7 @@
 	}
 </script>
 
-<style scoped>
+<style>
 	.tab-bar-item{
 		flex: 1;
 		height: 49px;
