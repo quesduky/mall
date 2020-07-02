@@ -4,25 +4,21 @@
 		<nav-bar class="home-nav">
 			<div slot="center-bar">购物街</div>
 		</nav-bar>
-		<!-- 轮播 -->
-		<swiper></swiper>
-		<!-- 展示推荐位 -->
-		<recomment-view :recomments="recomments"/>
-		
-		<!-- 图片展示位 -->
-		<feature />
-		
-		<!-- 导航控制条 -->
-		<tab-control :controlTitles="['爆款','精品','新款']" class="tab-control" @tabClick="tabClick"/>
-		<goods-list :goods="showGoods"></goods-list>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
+		<!-- 导航条 -->
+		<scroll class="content" ref="scroll">
+			<!-- 轮播 -->
+			<swiper></swiper>
+			<!-- 展示推荐位 -->
+			<recomment-view :recomments="recomments"/>
+			<!-- 图片展示位 -->
+			<feature />
+			<!-- 导航控制条 -->
+			<tab-control :controlTitles="['爆款','精品','新款']" class="tab-control" @tabClick="tabClick"/>
+			<goods-list :goods="showGoods"></goods-list>
+		</scroll>
+			<!-- 返回顶部组件-->
+			<!-- 监听组件的原生点击事件，必须添加.native属性 -->
+		<back-top @click.native="backTop"></back-top>
 	</div>
 </template>
 
@@ -36,6 +32,9 @@
 	import Swiper from '../../components/common/swiper/Swiper.vue'
 	import TabControl from '../../components/content/tabcontrol/TabControl.vue'
 	import GoodsList from '../../components/content/home/GoodsList.vue'
+	import BackTop from '../../components/content/backTop/BackTop.vue'
+	// 导入封装的scroll组件
+	import Scroll from '../../components/common/scroll/BScroll.vue'
 	// 导入封装的首页网络请求
 	import {getHomeData,getHomeGoods} from '../../network/home.js'
 	export default {
@@ -46,7 +45,9 @@
 			NavBar,
 			Swiper,
 			TabControl,
-			GoodsList
+			GoodsList,
+			Scroll,
+			BackTop
 		},
 		data() {
 			return {
@@ -90,8 +91,7 @@
 					case 2:
 						this.currentType = 'new'
 						break
-				}
-					
+				}	
 			},
 			// 将请求数据处理的具体方法,created中只写主要的处理逻辑
 			// 请求首页的banner和推荐位数据
@@ -115,6 +115,12 @@
 				}).catch(err =>{
 					console.log(err)
 				})
+			},
+			// 返回顶部按钮点击事件
+			backTop(){
+				// 通过给元素添加ref属性,可以获取到该组件内元素,通过访问scroll的scrollTo的方法实现返回顶部的功能
+				// this.$refs.scroll.scroll.scrollTo(0,0,1000)
+				this.$refs.scroll.scrollTo(0,0)
 			}
 		}
 	}
@@ -125,6 +131,8 @@
 		width: 100%;
 		/* 顶部导航使用fixed.设置内距将内容顶下来 */
 		padding-top: 44px;
+		height: 100vh;
+		position: relative;
 	}
 	.home-nav {
 		background-color: aliceblue;
@@ -136,9 +144,19 @@
 		right: 0;
 		z-index:12;
 	}
-	/* 设置tab-control吸顶 */
+	
 	.tab-control{
+		/* 设置tab-control吸顶 */
 		position: sticky;
 		top: 44px;
+	}
+	.content{
+		overflow: hidden;
+		/* 利用定位确定除了顶部底部 的中间元素的位置 */
+		position: absolute;
+		top: 44px;
+		bottom: 49px;
+		left: 0;
+		right: 0;
 	}
 </style>

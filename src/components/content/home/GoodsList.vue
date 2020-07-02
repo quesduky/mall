@@ -1,20 +1,7 @@
 <template>
 	<!-- 商品列表组件 -->
 	<div class="goods">
-		<goods-list-item v-for="(item,index) in goods" :goodsItem="item" :key="index"/>
-		<ul>
-			<li>商品1</li>
-			<li>商品1</li>
-			<li>商品1</li>
-			<li>商品1</li>
-			<li>商品1</li>
-			<li>商品1</li>
-			<li>商品1</li>
-			<li>商品1</li>
-			<li>商品1</li>
-			<li>商品1</li>
-		</ul>
-		
+		<goods-list-item v-for="(item,index) in goods" :goodsItem="item" :key="index"/>		
 	</div>
 </template>
 
