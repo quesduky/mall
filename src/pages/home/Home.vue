@@ -5,7 +5,7 @@
 			<div slot="center-bar">购物街</div>
 		</nav-bar>
 		<!-- 导航条 -->
-		<scroll class="content" ref="scroll">
+		<scroll class="content" ref="scroll" :probeType="3" @scroll="hscroll">
 			<!-- 轮播 -->
 			<swiper></swiper>
 			<!-- 展示推荐位 -->
@@ -18,7 +18,7 @@
 		</scroll>
 			<!-- 返回顶部组件-->
 			<!-- 监听组件的原生点击事件，必须添加.native属性 -->
-		<back-top @click.native="backTop"></back-top>
+		<back-top @click.native="backTop" v-show="isShowBackTop"></back-top>
 	</div>
 </template>
 
@@ -61,7 +61,8 @@
 					'new':{page:0,list:[]},
 					'sell':{page:0,list:[]}
 				},
-				currentType: 'pop'
+				currentType: 'pop',
+				isShowBackTop:false
 			} 
 		},
 		// 计算属性
@@ -93,6 +94,11 @@
 						break
 				}	
 			},
+			// 监听处理子组件的自定义事件
+			hscroll(position) {
+				// 设置显示隐藏返回顶部按钮
+				this.isShowBackTop = (-position.y) > 600
+			},
 			// 将请求数据处理的具体方法,created中只写主要的处理逻辑
 			// 请求首页的banner和推荐位数据
 			getHomeData() {
@@ -120,6 +126,7 @@
 			backTop(){
 				// 通过给元素添加ref属性,可以获取到该组件内元素,通过访问scroll的scrollTo的方法实现返回顶部的功能
 				// this.$refs.scroll.scroll.scrollTo(0,0,1000)
+				// 或者通过调用在scroll中定义好的方法直接返回顶部
 				this.$refs.scroll.scrollTo(0,0)
 			}
 		}
