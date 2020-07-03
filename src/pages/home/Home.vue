@@ -5,7 +5,7 @@
 			<div slot="center-bar">购物街</div>
 		</nav-bar>
 		<!-- 导航条 -->
-		<scroll class="content" ref="scroll" :probeType="3" @scroll="hscroll">
+		<scroll class="content" ref="scroll" :probeType="3" @scroll="hscroll" :pullUpLoad="true" @pullingUp="loadMore">
 			<!-- 轮播 -->
 			<swiper></swiper>
 			<!-- 展示推荐位 -->
@@ -99,6 +99,11 @@
 				// 设置显示隐藏返回顶部按钮
 				this.isShowBackTop = (-position.y) > 600
 			},
+			// 上拉加载更多商品
+			loadMore() {
+				this.getHomeGoods(this.currentType)
+				
+			},
 			// 将请求数据处理的具体方法,created中只写主要的处理逻辑
 			// 请求首页的banner和推荐位数据
 			getHomeData() {
@@ -118,6 +123,9 @@
 					// 将获取的数据追加到list数组中
 					// ... es6新语法 将对象字面量展开为多个元素 相当于concat
 					this.goods[type].list.push(...res.data.data.list)
+					this.goods[type].page += 1
+					
+					this.$refs.scroll.scroll.finishPullUp()
 				}).catch(err =>{
 					console.log(err)
 				})

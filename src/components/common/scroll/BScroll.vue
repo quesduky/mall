@@ -14,6 +14,10 @@
 			probeType: {
 				type:Number,
 				default: 0
+			},
+			pullUpLoad: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -32,12 +36,18 @@
 			this.scroll = new BScroll(document.querySelector('.container'),{
 				// 这里必须设置click为true,组件下的点击事件才可以使用
 				click:true,
-				probeType:this.probeType
+				probeType:this.probeType,
+				pullUpLoad:this.pullUpLoad
 			}),
 			// 监听滚动的位置
 			this.scroll.on('scroll',position => {
 				// 将信息发送给父组件,position就是实时滚动的位置,y是个负值
 				this.$emit('scroll',position)
+			}),
+			// 监听上拉事件
+			this.scroll.on('pullingUp',() =>{
+				// 上拉加载商品
+				this.$emit('pullingUp')
 			})
 		}
 	}	
