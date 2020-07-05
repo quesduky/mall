@@ -77,7 +77,12 @@
 			// 请求商品数据
 			this.getHomeGoods('pop'),
 			this.getHomeGoods('new'),
-			this.getHomeGoods('sell')
+			this.getHomeGoods('sell'),
+			
+			// 利用事件总线,goodslistitem中发送事件,home中监听,监听到事件后拿到scroll对象,执行refresh,进行实时刷新可滚动区域的高度
+			this.$bus.$on('imgLoad',() =>{
+				this.$refs.scroll.scroll.refresh()
+			})
 		},
 		methods:{
 			// 事件监听相关
