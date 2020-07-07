@@ -29,6 +29,9 @@
 			// 定义的返回顶部的方法,通过调用scrollTo方法,time=800为设置的默认数值
 			scrollTo(x,y,time=800){
 				this.scroll.scrollTo(x,y,time)
+			},
+			refresh() {
+				this.scroll && this.scroll.refresh()
 			}
 		},
 		mounted() {
@@ -49,6 +52,7 @@
 				// 上拉加载商品
 				this.$emit('pullingUp')
 			})
+			
 		}
 	}	
 </script>

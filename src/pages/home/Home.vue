@@ -13,7 +13,9 @@
 			<!-- 图片展示位 -->
 			<feature />
 			<!-- 导航控制条 -->
-			<tab-control :controlTitles="['爆款','精品','新款']" class="tab-control" @tabClick="tabClick"/>
+			<tab-control :controlTitles="['爆款','精品','新款']" class="tab-control" 
+			@tabClick="tabClick" 
+			ref="tabControl"/>
 			<goods-list :goods="showGoods"></goods-list>
 		</scroll>
 			<!-- 返回顶部组件-->
@@ -77,14 +79,29 @@
 			// 请求商品数据
 			this.getHomeGoods('pop'),
 			this.getHomeGoods('new'),
-			this.getHomeGoods('sell'),
-			
+			this.getHomeGoods('sell')
+		},
+		mounted() {
+			// 1.图片加载完成的事件监听
+			const refresh = this.debounce(this.$refs.scroll.refresh,100)
 			// 利用事件总线,goodslistitem中发送事件,home中监听,监听到事件后拿到scroll对象,执行refresh,进行实时刷新可滚动区域的高度
 			this.$bus.$on('imgLoad',() =>{
-				this.$refs.scroll.scroll.refresh()
+				refresh()
 			})
+			// 2.获取tabContral的offsetTop
+			console.log(this.$refs.tabControl.$el.offsetTop)
 		},
 		methods:{
+			// 防抖函数,用于控制refresh请求次数
+			debounce(func,delay){
+				let timer = null
+				return function(...args){
+					if(timer) clearTimeout(timer)
+					timer = setTimeout(() => {
+						func.apply(this,args)
+					},delay)
+				}
+			},
 			// 事件监听相关
 			tabClick(index){
 				switch(index){
@@ -166,9 +183,9 @@
 	}
 	
 	.tab-control{
-		/* 设置tab-control吸顶 */
-		position: sticky;
-		top: 44px;
+		/* 设置tab-control吸顶 失效*/
+		/* position: sticky;
+		top: 44px; */
 	}
 	.content{
 		overflow: hidden;
