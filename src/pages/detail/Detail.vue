@@ -1,13 +1,16 @@
 <template>
 	<div>
-		新页面
-		{{id}}
+		<detail-nav-bar />
 	</div>
 </template>
 
 <script>
+	import DetailNavBar from './childComps/DetailNavBar.vue'
 	export default {
 		name: "Detail",
+		components:{
+			DetailNavBar
+		},
 		data(){
 			return{
 				id:null

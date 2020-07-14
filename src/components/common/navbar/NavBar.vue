@@ -23,6 +23,10 @@
 	.left,.right {
 		width: 60px;
 	}
+	.left img,.right img {
+		width: 24px;
+		height: 24px;
+	}
 	.center {
 		flex: 1;
 	}
