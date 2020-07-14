@@ -6,6 +6,7 @@ const Home = () => import('../pages/home/Home.vue')
 const Category = () => import('../pages/category/Category.vue')
 const Shopcart = () => import('../pages/shopcart/Shopcart.vue')
 const Profile = () => import('../pages/profile/Profile.vue')
+const Detail = () => import('../pages/detail/Detail.vue')
 // 初始化router
 Vue.use(VueRouter)
 
@@ -32,6 +33,10 @@ const router = new VueRouter({
 		{
 			path: '/profile',
 			component: Profile
+		},
+		{
+			path: '/detail/:id',
+			component: Detail
 		}
 	],
 	mode: 'history'

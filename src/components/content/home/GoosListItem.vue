@@ -1,7 +1,7 @@
 <template>
 		<!-- 商品列表子组件 -->
 	<div class="goods-item">
-		<img :src="goodsItem.show.img" @load="imgLoad">
+		<img :src="goodsItem.show.img" @load="imgLoad" @click="goodsItemClick">
 		<div class="goods-info">
 			<p>{{goodsItem.title}}</p>
 			<span class="price">{{goodsItem.price}}</span>
@@ -24,6 +24,9 @@
 		methods:{
 			imgLoad(){
 				this.$bus.$emit('imgLoad')
+			},
+			goodsItemClick(){
+				this.$router.push('/detail/'+this.goodsItem.iid)
 			}
 		}
 	}
