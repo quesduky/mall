@@ -7,7 +7,7 @@
 		<!-- 导航条 -->
 		<scroll class="content" ref="scroll" :probeType="3" @scroll="hscroll" :pullUpLoad="true" @pullingUp="loadMore">
 			<!-- 轮播 -->
-			<swiper></swiper>
+			<home-swiper :banners="banners"></home-swiper>
 			<!-- 展示推荐位 -->
 			<recomment-view :recomments="recomments"/>
 			<!-- 图片展示位 -->
@@ -31,7 +31,7 @@
 	
 	// 导入component中的组件
 	import NavBar from '../../components/common/navbar/NavBar.vue'
-	import Swiper from '../../components/common/swiper/Swiper.vue'
+	import HomeSwiper from './childComps/HomeSwiper.vue'
 	import TabControl from '../../components/content/tabcontrol/TabControl.vue'
 	import GoodsList from '../../components/content/home/GoodsList.vue'
 	import BackTop from '../../components/content/backTop/BackTop.vue'
@@ -45,7 +45,7 @@
 			RecommentView,
 			Feature,
 			NavBar,
-			Swiper,
+			HomeSwiper,
 			TabControl,
 			GoodsList,
 			Scroll,
@@ -131,7 +131,7 @@
 			getHomeData() {
 				getHomeData().then(res =>{
 					// console.log(res.data.data.banner)
-					this.banners = res.data.data.banner,
+					this.banners = res.data.data.banner.list,
 					this.recomments =res.data.data.recommend.list
 				}).catch(err =>{
 					console.log(err)
