@@ -71,7 +71,8 @@
 				currentType: 'pop',
 				isShowBackTop:false,
 				tabOffSetTop:0,
-				isShow:false
+				isShow:false,
+				saveY:0
 			} 
 		},
 		// 计算属性
@@ -79,6 +80,14 @@
 			showGoods(){
 				return this.goods[this.currentType].list
 			}
+		},
+		// 设置离开首页位置信息保存
+		activated(){
+			this.$refs.scroll.scroll.scrollTo(0,this.saveY)
+			this.$refs.scroll.scroll.refresh()
+		},
+		deactivated(){
+			this.saveY = this.$refs.scroll.scroll.y
 		},
 		created() {
 			// 请求首页的banner和推荐位数据
@@ -123,8 +132,6 @@
 				}	
 				this.$refs.tabControl.currentIndex = index;
 				this.$refs.HtabControl.currentIndex = index;
-				console.log(this.$refs.tabControl.currentIndex)
-				console.log(this.$refs.HtabControl.currentIndex)
 				
 
 			},
@@ -176,7 +183,8 @@
 				// this.$refs.scroll.scroll.scrollTo(0,0,1000)
 				// 或者通过调用在scroll中定义好的方法直接返回顶部
 				this.$refs.scroll.scrollTo(0,0)
-			}
+			},
+			
 		}
 	}
 </script>
@@ -185,7 +193,6 @@
 	#home{
 		width: 100%;
 		/* 顶部导航使用fixed.设置内距将内容顶下来 */
-		padding-top: 44px;
 		height: 100vh;
 		position: relative;
 	}
@@ -212,6 +219,6 @@
 		bottom: 49px;
 		left: 0;
 		right: 0;
-		margin-top: 44px;
+		/* margin-top: 44px;  */
 	}
 </style>
