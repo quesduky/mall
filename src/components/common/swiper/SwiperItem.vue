@@ -5,8 +5,8 @@
 </template>
 
 <script>
-	export	default {
-		name:"Slide"
+	export default {
+		name:"SwiperItem"
 	}
 </script>
 
