@@ -4,7 +4,7 @@
 		<div v-for="(item,index) in controlTitles" 
 				:key="index" 
 				class="control-item"
-				:class="{active: index === currenIndex}"
+				:class="{active: index === currentIndex}"
 				@click="itemClick(index)">
 			<span>{{item}}</span>
 		</div>
@@ -24,7 +24,7 @@
 		},
 		data() {
 			return {
-				currenIndex:0
+				currentIndex:0
 			}
 		},
 		methods:{

@@ -4,16 +4,21 @@
 		<nav-bar class="home-nav">
 			<div slot="center-bar">购物街</div>
 		</nav-bar>
+		<!-- 导航控制条的吸顶显示 -->
+		<tab-control :controlTitles="['爆款','精品','新款']"
+		@tabClick="tabClick" 
+		ref="HtabControl" v-show="isShow"/>
 		<!-- 导航条 -->
 		<scroll class="content" ref="scroll" :probeType="3" @scroll="hscroll" :pullUpLoad="true" @pullingUp="loadMore">
 			<!-- 轮播 -->
-			<home-swiper :banners="banners"></home-swiper>
+			<home-swiper :banners="banners" @swiperImgLoad="swiperImgLoad"></home-swiper>
 			<!-- 展示推荐位 -->
 			<recomment-view :recomments="recomments"/>
 			<!-- 图片展示位 -->
 			<feature />
 			<!-- 导航控制条 -->
-			<tab-control :controlTitles="['爆款','精品','新款']" class="tab-control" 
+			<tab-control :controlTitles="['爆款','精品','新款']" 
+			class="tab-control" 
 			@tabClick="tabClick" 
 			ref="tabControl"/>
 			<goods-list :goods="showGoods"></goods-list>
@@ -64,7 +69,9 @@
 					'sell':{page:0,list:[]}
 				},
 				currentType: 'pop',
-				isShowBackTop:false
+				isShowBackTop:false,
+				tabOffSetTop:0,
+				isShow:false
 			} 
 		},
 		// 计算属性
@@ -88,9 +95,8 @@
 			this.$bus.$on('imgLoad',() =>{
 				refresh()
 			})
-			// 2.获取tabContral的offsetTop
-			console.log(this.$refs.tabControl.$el.offsetTop)
-		},
+			
+		}, 
 		methods:{
 			// 防抖函数,用于控制refresh请求次数
 			debounce(func,delay){
@@ -115,16 +121,28 @@
 						this.currentType = 'new'
 						break
 				}	
+				this.$refs.tabControl.currentIndex = index;
+				this.$refs.HtabControl.currentIndex = index;
+				console.log(this.$refs.tabControl.currentIndex)
+				console.log(this.$refs.HtabControl.currentIndex)
+				
+
 			},
 			// 监听处理子组件的自定义事件
 			hscroll(position) {
 				// 设置显示隐藏返回顶部按钮
 				this.isShowBackTop = (-position.y) > 600
+				// TabControl是否吸顶
+				this.isShow = (-position.y) > this.tabOffSetTop 
 			},
 			// 上拉加载更多商品
 			loadMore() {
-				this.getHomeGoods(this.currentType)
-				
+				this.getHomeGoods(this.currentType)	
+			},
+			// 监听swiper图片否加载完成
+			swiperImgLoad(){
+				// .获取tabContral的offsetTop   所有组件都有一个属性 $el 用于获取组件中的元素
+				this.tabOffSetTop = this.$refs.tabControl.$el.offsetTop
 			},
 			// 将请求数据处理的具体方法,created中只写主要的处理逻辑
 			// 请求首页的banner和推荐位数据
@@ -175,17 +193,16 @@
 		background-color: aliceblue;
 		color: #000;
 		/* 使用fixed固定navbar */
-		position: fixed;
+/* 		position: fixed;
 		top:0;
 		left: 0;
-		right: 0;
+		right: 0; */
 		z-index:12;
 	}
 	
 	.tab-control{
-		/* 设置tab-control吸顶 失效*/
-		/* position: sticky;
-		top: 44px; */
+		position: relative;
+		z-index: 8;
 	}
 	.content{
 		overflow: hidden;
@@ -195,5 +212,6 @@
 		bottom: 49px;
 		left: 0;
 		right: 0;
+		margin-top: 44px;
 	}
 </style>
