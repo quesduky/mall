@@ -5,15 +5,16 @@
 			<span class="cname">{{shop.cname}}</span>
 		</div>
 		<div class="shop-info">
-			<div>
-				<span>{{shop.cfans}}总销量</span>
-				<span>{{shop.cGoods}}全部宝贝</span>
+			<div class="shop-info-left">
+				<span>总销量:{{shop.cfans}}万</span><br >
+				<span><br /></span>
+				<span>全部宝贝:{{shop.cGoods}}</span>
 			</div>
-			<div>
+			<div class="shop-info-right">
 				<tr v-for="(item,index) in shop.cscore" :key="index">
-					<td>{{item.name}}</td>
-					<td>{{item.score}}</td>
-					<td></td>
+					<td>{{item.name}}:</td>
+					<td :class="{avtive:item.isBetter}" class="default">{{item.score}}</td>
+					<td :class="{avtive:item.isBetter}" class="default">{{item.isBetter?'高':'低'}}</td>
 				</tr>
 			</div>
 		</div>
@@ -70,5 +71,23 @@
 	.shop-info{
 		height: 120px;
 		margin-top: 12px;
+		display: flex;
+	}
+	.shop-info-left{
+		flex: 1;
+		margin-left: 12px;
+		font-weight: 600;
+	}
+	.shop-info-right{
+		flex: 1;
+	}
+	.shop-info-right tr td{
+		padding: 0 8px;
+	}
+	.default{
+		color: #42B983;
+	}
+	.avtive{
+		color: #FF0000;
 	}
 </style>
