@@ -1,10 +1,11 @@
 <template>
 	<div id="detail">
 		<detail-nav-bar class="detail-navbar"/>
-		<scroll class="container">
+		<scroll class="container" ref="scroll">
 			<detail-banner :top-images="topImages"/>
 			<detail-base-info :goods="goods" />
 			<detail-shop-info :shop="shop" />
+			<detail-goods-info :detail-info="detailInfo" @imgLoad="imgLoad"/>
 		</scroll>
 	</div>
 </template>
@@ -14,6 +15,7 @@
 	import DetailBanner from './childComps/DetailBanner.vue'
 	import DetailBaseInfo from './childComps/DetailBaseInfo.vue'
 	import DetailShopInfo from './childComps/DetailShopInfo.vue'
+	import DetailGoodsInfo from './childComps/DetailGoodsInfo.vue'
 	
 	import Scroll from '../../components/common/scroll/BScroll.vue' 
 	
@@ -25,14 +27,16 @@
 			DetailBanner,
 			DetailBaseInfo,
 			DetailShopInfo,
-			Scroll
+			Scroll,
+			DetailGoodsInfo
 		},
 		data(){
 			return{
 				iid:null,
 				topImages:[],
 				goods: {},
-				shop:{}
+				shop:{},
+				detailInfo:{}
 			}
 		},
 		created() {
@@ -48,11 +52,20 @@
 				this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
 				// 获取商家信息
 				this.shop = new Shop(data.shopInfo)
+				// 获取详情页商品详情图
+				this.detailInfo = data.detailInfo
 				
 			}).catch(err =>{
 				console.log(err)
 			})
 
+		},
+		methods:{
+		// 监听到图片加载完成执行刷新scroll
+			imgLoad(){
+				this.$refs.scroll.refresh()
+				console.log('----')
+			}
 		}
 	}
 </script>

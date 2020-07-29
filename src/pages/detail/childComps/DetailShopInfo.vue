@@ -18,20 +18,6 @@
 				</tr>
 			</div>
 		</div>
-		<div></div>
-		<ul>
-			<li>00</li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-		
 	</div>
 </template>
 
