@@ -7,7 +7,7 @@ export function	getDetail(iid){
 		}
 	})
 }
-
+// 商品信息
 export class Goods{
 	constructor(itemInfo,columns,services){
 		this.title = itemInfo.title
@@ -17,5 +17,15 @@ export class Goods{
 		this.columns = columns
 		this.lealPrice = itemInfo.lowNowPrice
 		this.services = services
+	}
+}
+// 商家信息
+export class Shop{
+	constructor(shopInfo){
+		this.clogo = shopInfo.shopLogo
+		this.cname = shopInfo.name
+		this.cfans = shopInfo.cFans
+		this.cGoods = shopInfo.cGoods
+		this.cscore = shopInfo.score
 	}
 }

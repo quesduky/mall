@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="detail-info">
 		<div class="title">{{goods.title}}</div>
 		<div>
 			<span class="n-price">￥{{goods.lealPrice}}</span>
@@ -25,6 +25,9 @@
 </script>
 
 <style scoped>
+	.detail-info{
+		height: 120px;
+	}
 	.title{
 		margin: 8px;
 	}
@@ -48,10 +51,12 @@
 		border-radius: 4px;
 	}
 	.columns{
+		width: 30%;
 		color: #505050;
 		font-size: 14px;
 		float: left;
-		margin: 0 36px;
+		margin-left: 12px;
+		margin-top: 12px;
 
 	}
 </style>
