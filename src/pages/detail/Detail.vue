@@ -6,6 +6,7 @@
 			<detail-base-info :goods="goods" />
 			<detail-shop-info :shop="shop" />
 			<detail-goods-info :detail-info="detailInfo" @imgLoad="imgLoad"/>
+			<detail-params-info :params="params" />
 		</scroll>
 	</div>
 </template>
@@ -16,10 +17,11 @@
 	import DetailBaseInfo from './childComps/DetailBaseInfo.vue'
 	import DetailShopInfo from './childComps/DetailShopInfo.vue'
 	import DetailGoodsInfo from './childComps/DetailGoodsInfo.vue'
+	import DetailParamsInfo from './childComps/DetailParamsInfo.vue'
 	
 	import Scroll from '../../components/common/scroll/BScroll.vue' 
 	
-	import {getDetail,Goods,Shop} from '../../network/detail.js'
+	import {getDetail,Goods,Shop,Params} from '../../network/detail.js'
 	export default {
 		name: "Detail",
 		components:{
@@ -27,8 +29,10 @@
 			DetailBanner,
 			DetailBaseInfo,
 			DetailShopInfo,
-			Scroll,
-			DetailGoodsInfo
+			DetailGoodsInfo,
+			DetailParamsInfo,
+			Scroll
+			
 		},
 		data(){
 			return{
@@ -36,7 +40,8 @@
 				topImages:[],
 				goods: {},
 				shop:{},
-				detailInfo:{}
+				detailInfo:{},
+				params:{}
 			}
 		},
 		created() {
@@ -54,6 +59,8 @@
 				this.shop = new Shop(data.shopInfo)
 				// 获取详情页商品详情图
 				this.detailInfo = data.detailInfo
+				// 获取商品规格属性
+				this.params = new Params(data.itemParams)
 				
 			}).catch(err =>{
 				console.log(err)

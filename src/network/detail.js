@@ -29,3 +29,13 @@ export class Shop{
 		this.cscore = shopInfo.score
 	}
 }
+// 商品规格信息
+export class Params{
+	constructor(itemParams){
+		this.info = itemParams.info.key
+		this.set = itemParams.info.set
+		this.key = itemParams.rule.key
+		this.disclaimer = itemParams.rule.disclaimer
+		this.tables =  itemParams.rule.tables[0]
+	}
+}
