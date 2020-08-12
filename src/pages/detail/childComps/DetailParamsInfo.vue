@@ -17,7 +17,7 @@
 				<tr>
 					<th>{{params.key}}</th>
 				</tr>
-				<tr  v-for="item in params.tables" :key="item">
+				<tr  v-for="(item,index) in params.tables" :key="item[index]">
 					<td>{{item[0]}}</td>
 					<td v-for="num in params.tables.length" :key="num">{{item[num]}}</td>
 				</tr>
@@ -30,13 +30,8 @@
 <script>
 	export default{
 		name:"DetalParamsInfo",
-		data(){
-			return {
-				pr:{}
-			}
-		},
 		created() {
-			this.pr = this.params.tables[0]
+			this.pr = this.params.tables
 		},
 		props:{
 			params:{

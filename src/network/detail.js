@@ -5,7 +5,7 @@ export function	getDetail(iid){
 		params:{
 			iid
 		}
-	})
+	});
 }
 // 商品信息
 export class Goods{
@@ -38,4 +38,12 @@ export class Params{
 		this.disclaimer = itemParams.rule.disclaimer
 		this.tables =  itemParams.rule.tables[0]
 	}
+}
+
+// 获取详情页推荐商品
+export function getDetailRecommend(){
+	return request({
+		url: "/recommend",
+		methods: "GET"
+	});
 }
