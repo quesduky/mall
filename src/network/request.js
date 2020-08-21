@@ -9,3 +9,12 @@ export function request(config) {
 	// 发送网络请求
 	return instancel(config)
 }
+
+export function requestCategory(config){
+	// 创建分类页面的请求实例
+	const instancel = axios.create({
+		baseURL:'https://api.it120.cc/az/mock/category',
+		timeout:5000
+	})
+	return instancel(config)
+}

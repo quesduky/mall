@@ -155,7 +155,7 @@
 			// 请求首页的banner和推荐位数据
 			getHomeData() {
 				getHomeData().then(res =>{
-					// console.log(res.data.data.banner)
+					console.log(res.data.data.banner)
 					this.banners = res.data.data.banner.list,
 					this.recomments =res.data.data.recommend.list
 				}).catch(err =>{
