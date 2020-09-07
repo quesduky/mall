@@ -18,3 +18,12 @@ export function requestCategory(config){
 	})
 	return instancel(config)
 }
+
+export function requestProfile(config){
+	// 创建个人信息也米娜请求实例
+	const instancel = axios.create({
+		baseURL: 'https://api.it120.cc/az/mock/file',
+		timeout: 5000
+	})
+	return instancel(config)
+}

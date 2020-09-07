@@ -197,7 +197,8 @@
 		position: relative;
 	}
 	.home-nav {
-		background-color: aliceblue;
+		background-color: #f88;
+		font-weight: 800;
 		color: #000;
 		/* 使用fixed固定navbar */
 /* 		position: fixed;

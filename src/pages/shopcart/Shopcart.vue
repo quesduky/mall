@@ -1,12 +1,30 @@
 <template>
-	<h2>购物车</h2>
+	<div>
+		<nav-bar class="navbar">
+			<div slot="center-bar">购物车{{num}}</div>
+		</nav-bar>
+	</div>
 </template>
 
 <script>
+	import NavBar from '../../components/common/navbar/NavBar.vue'
+	
 	export default {
-		name: "Shopcart"
+		name: "Shopcart",
+		data(){
+			return {
+				num:0
+			}
+		},
+		components:{
+			NavBar
+		}
 	}
 </script>
 
-<style>
+<style scoped>
+	.navbar{
+		background-color: #f88;
+		font-weight: 800;
+	}
 </style>

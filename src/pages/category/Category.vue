@@ -28,7 +28,8 @@
 		width: 100%;
 		position: fixed;
 		margin-top: -44px;
-		background-color: #FFFFFF;
+		background-color:#f88;
+		font-weight: 800;
 		z-index: 9;
 	}
 </style>

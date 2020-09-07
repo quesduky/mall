@@ -24,7 +24,6 @@
 			getCategoryLeft().then(res => {
 				this.leftData = JSON.parse(res.data);
 				this.leftData = this.leftData.data.list
-				console.log(this.leftData)
 			}).catch(err => {
 				console.log(err)
 			})
