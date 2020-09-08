@@ -1,4 +1,5 @@
 <template>
+	<!-- 头像昵称 -->
 	<div class="profile">
 		<div class="infoimg">
 			<img :src="img" alt="">

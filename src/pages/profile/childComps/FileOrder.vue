@@ -1,10 +1,10 @@
 <template>
 	<!-- 我的里面我的订单模块 -->
 	<div>
-		<div class="fileorder">
+		<div class="container">
 			<div class="top">
-				<span>我的订单</span>
-				<span>全部></span>
+				<span class="myorder">我的订单</span>
+				<span class="whole">全部></span>
 			</div>
 			<div class="bottom">
 				<div v-for="item in myordericon"
@@ -50,14 +50,13 @@
 </script>
 
 <style scoped>
-	.fileorder{
-		width: 100%;
+	.container{
+		width: 92%;
 		height: 120px;
-		background-color: #f8f8f8;
-		margin: 16px;
+		margin: 8px auto;
+		background-color: #ffff;
 	}
 	.top{
-		width: 92%;
 		height: 40px;
 		display: flex;
 		line-height: 40px;
@@ -65,25 +64,35 @@
 		border-bottom: 1px #d1d1d1 solid;
 		margin-bottom: 4px;
 	}
+	.myorder{
+		font-weight: 600;
+		margin-left: 8px;
+	}
+	.whole{
+		font-size: 12px;
+		color: #a0a0a0;
+	}
 	.bottom{
-		width: 100%;
 		height: 78px;
 		display: flex;
+		display: -webkit-flex;
+		padding: 16px;
+		/* background-color: #42B983; */
 	}
 	.bottomitem{
-		width: 80px;
-		height: 80px;
+		height: 60px;
 		flex: 1;
 		display: flex;
-		flex-wrap: wrap; /* 换行 */
-		margin: 0 4px;
-		text-align: center;
+		display: -webkit-flex;
+		flex-direction: column;/* 项目排列方向 */
+		
 	}
 	.bottom img{
 		width: 40px;
 		height: 40px;
+		align-self:center;
 	}
 	.text{
-		text-align: center;
+		align-self: center;
 	}
 </style>
