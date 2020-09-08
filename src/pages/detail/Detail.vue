@@ -9,7 +9,7 @@
 			<detail-params-info :params="params" ref="params"/>
 			<detail-rate :rate="rate" ref="rate"/>
 		</scroll>
-		<detail-bottom-bar />
+		<detail-bottom-bar :goodsData="goodsData"/>
 	</div>
 </template>
 
@@ -38,7 +38,6 @@
 			DetailRate,
 			DetailBottomBar,
 			Scroll
-			
 		},
 		data(){
 			return{
@@ -51,6 +50,13 @@
 				rate:{},
 				distanceY:[],
 				shopRecommend:[]
+			}
+		},
+		computed:{
+			// 将添加购物车的商品信息拼接传递给子组件
+			goodsData(){
+				let goodsData = {id: this.iid, title: this.goods.title, price: this.goods.price, img: this.topImages[0]}
+				return goodsData
 			}
 		},
 		created() {
@@ -74,7 +80,6 @@
 				this.rate = data.rate.list[0]
 				// // 推荐商品数据
 				// this.getDetailRecommend();
-				
 				this.$nextTick(() =>{
 					// 延迟执行一段代码
 					this.distanceY.push(0)
@@ -99,7 +104,6 @@
 			},
 		// 点击导航事件,获取对应元素的offsettop值
 			navBarClick(index){
-				
 				this.$refs.scroll.scrollTo(0,-this.distanceY[index],200)
 			}
 		}

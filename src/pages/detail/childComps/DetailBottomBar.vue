@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div class="right-bar">
-			<div class="R0">
+			<div class="R0" @click="addcart">
 				加入购物车
 			</div>
 			<div class="R1">
@@ -27,7 +27,18 @@
 
 <script>
 	export default{
-		name:"DetailBottomBar"
+		name:"DetailBottomBar",
+		props:{
+			goodsData:{
+				type: Object
+			}
+		},
+		methods:{
+			addcart(){
+				// 更改购物车页面顶部商品数量
+				this.$store.commit('addcart',this.goodsData)
+			}
+		}
 	}
 </script>
 

@@ -3,9 +3,16 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const store = Vuex.Store({
+export default new Vuex.Store({
 	state: {
-		count: 0
+		goodsNum: 0,
+		goodsList: []
+	},
+	mutations:{
+		addcart(state,goodsData) {
+			state.goodsNum++;
+			state.goodsList.push(goodsData)
+		}
 	}
 })
 

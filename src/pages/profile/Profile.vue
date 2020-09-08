@@ -6,6 +6,7 @@
 		<file-info class="fileinfo"></file-info>
 		<file-data></file-data>
 		<file-order></file-order>
+		<button @click="totototo"></button>
 	</div>
 </template>
 
@@ -23,6 +24,11 @@
 			FileInfo,
 			FileOrder,
 			FileData
+		},
+		methods:{
+			totototo(){
+				console.log(this.$store)
+			}
 		}
 	}
 </script>

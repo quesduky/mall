@@ -1,8 +1,9 @@
 <template>
 	<div>
 		<nav-bar class="navbar">
-			<div slot="center-bar">购物车{{num}}</div>
+			<div slot="center-bar">购物车({{goodsNum}})</div>
 		</nav-bar>
+		{{this.$store.state.goodsList}}
 	</div>
 </template>
 
@@ -13,7 +14,12 @@
 		name: "Shopcart",
 		data(){
 			return {
-				num:0
+
+			}
+		},
+		computed:{
+			goodsNum(){
+				return this.$store.state.goodsNum
 			}
 		},
 		components:{
