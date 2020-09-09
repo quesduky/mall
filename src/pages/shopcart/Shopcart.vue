@@ -3,12 +3,14 @@
 		<nav-bar class="navbar">
 			<div slot="center-bar">购物车({{goodsNum}})</div>
 		</nav-bar>
-		{{this.$store.state.goodsList}}
+		<cart-goods></cart-goods>
 	</div>
 </template>
 
 <script>
 	import NavBar from '../../components/common/navbar/NavBar.vue'
+	
+	import CartGoods from './childComps/CartGoods.vue'
 	
 	export default {
 		name: "Shopcart",
@@ -23,7 +25,8 @@
 			}
 		},
 		components:{
-			NavBar
+			NavBar,
+			CartGoods
 		}
 	}
 </script>

@@ -55,7 +55,7 @@
 		computed:{
 			// 将添加购物车的商品信息拼接传递给子组件
 			goodsData(){
-				let goodsData = {id: this.iid, title: this.goods.title, price: this.goods.price, img: this.topImages[0]}
+				let goodsData = {id: this.iid, title: this.goods.title, price: this.goods.lealPrice, img: this.topImages[0]}
 				return goodsData
 			}
 		},
