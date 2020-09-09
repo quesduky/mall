@@ -3,7 +3,9 @@
 		<nav-bar class="navbar">
 			<div slot="center-bar">购物车({{goodsNum}})</div>
 		</nav-bar>
+		<no-goods v-if="goodsNum == 0"></no-goods>
 		<cart-goods></cart-goods>
+		
 	</div>
 </template>
 
@@ -11,6 +13,7 @@
 	import NavBar from '../../components/common/navbar/NavBar.vue'
 	
 	import CartGoods from './childComps/CartGoods.vue'
+	import NoGoods from './childComps/NoGoods.vue'
 	
 	export default {
 		name: "Shopcart",
@@ -26,7 +29,8 @@
 		},
 		components:{
 			NavBar,
-			CartGoods
+			CartGoods,
+			NoGoods
 		}
 	}
 </script>
