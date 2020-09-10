@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="shopcart">
 		<nav-bar class="navbar">
 			<div slot="center-bar">购物车({{goodsNum}})</div>
 		</nav-bar>
@@ -36,6 +36,10 @@
 </script>
 
 <style scoped>
+	.shopcart{
+		height: 100%;
+		width: 100%;
+	}
 	.navbar{
 		background-color: #f88;
 		font-weight: 800;
